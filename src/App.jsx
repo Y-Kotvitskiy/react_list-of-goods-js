@@ -1,6 +1,6 @@
 import 'bulma/css/bulma.css';
 import './App.scss';
-import cn from 'classnames';
+import classname from 'classnames';
 import { useState } from 'react';
 
 export const goodsFromServer = [
@@ -20,7 +20,7 @@ const SORT_ALPHABETICALLY = 'abc';
 const SORT_BY_LENGTH = 'length';
 const SORT_DESC = 'desc';
 
-const getSortedAlphabetically = (goods, sortDirection) => {
+const sortListAlphabetically = (goods, sortDirection) => {
   goods.sort((good1, good2) => good1.localeCompare(good2));
   if (sortDirection === SORT_DESC) {
     goods.reverse();
@@ -29,7 +29,7 @@ const getSortedAlphabetically = (goods, sortDirection) => {
   return goods;
 };
 
-const getSortedByLength = (goods, sortDirection) => {
+const sortListByLength = (goods, sortDirection) => {
   goods.sort((good1, good2) => good1.length - good2.length);
   if (sortDirection === SORT_DESC) {
     goods.reverse();
@@ -51,9 +51,9 @@ const getGoods = (sortType, sortDirection) => {
 
   switch (sortType) {
     case SORT_ALPHABETICALLY:
-      return getSortedAlphabetically(goods, sortDirection);
+      return sortListAlphabetically(goods, sortDirection);
     case SORT_BY_LENGTH:
-      return getSortedByLength(goods, sortDirection);
+      return sortListByLength(goods, sortDirection);
     default:
       if (sortDirection === SORT_DESC) {
         return goods.reverse();
@@ -74,7 +74,7 @@ export const App = () => {
       <div className="buttons">
         <button
           type="button"
-          className={cn('button', 'is-info', {
+          className={classname('button', 'is-info', {
             'is-light': sortType !== SORT_ALPHABETICALLY,
           })}
           onClick={() => {
@@ -86,7 +86,7 @@ export const App = () => {
 
         <button
           type="button"
-          className={cn('button', 'is-success', {
+          className={classname('button', 'is-success', {
             'is-light': sortType !== SORT_BY_LENGTH,
           })}
           onClick={() => {
@@ -98,7 +98,7 @@ export const App = () => {
 
         <button
           type="button"
-          className={cn('button', 'is-warning', {
+          className={classname('button', 'is-warning', {
             'is-light': sortDirection !== SORT_DESC,
           })}
           onClick={() => {
@@ -111,7 +111,7 @@ export const App = () => {
         {sortType || sortDirection ? (
           <button
             type="button"
-            className={cn('button', 'is-danger', 'is-light')}
+            className={classname('button', 'is-danger', 'is-light')}
             onClick={() => {
               setSortType('');
               setSortDirection('');
