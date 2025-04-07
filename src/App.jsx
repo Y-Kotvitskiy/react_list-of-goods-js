@@ -20,7 +20,7 @@ const SORT_ALPHABETICALLY = 'abc';
 const SORT_BY_LENGTH = 'length';
 const SORT_DESC = 'desc';
 
-const sortAlphabetically = (goods, sortDirection) => {
+const getSortedAlphabetically = (goods, sortDirection) => {
   goods.sort((good1, good2) => good1.localeCompare(good2));
   if (sortDirection === SORT_DESC) {
     goods.reverse();
@@ -29,7 +29,7 @@ const sortAlphabetically = (goods, sortDirection) => {
   return goods;
 };
 
-const sortByLength = (goods, sortDirection) => {
+const getSortedByLength = (goods, sortDirection) => {
   goods.sort((good1, good2) => good1.length - good2.length);
   if (sortDirection === SORT_DESC) {
     goods.reverse();
@@ -51,9 +51,9 @@ const getGoods = (sortType, sortDirection) => {
 
   switch (sortType) {
     case SORT_ALPHABETICALLY:
-      return sortAlphabetically(goods, sortDirection);
+      return getSortedAlphabetically(goods, sortDirection);
     case SORT_BY_LENGTH:
-      return sortByLength(goods, sortDirection);
+      return getSortedByLength(goods, sortDirection);
     default:
       if (sortDirection === SORT_DESC) {
         return goods.reverse();
